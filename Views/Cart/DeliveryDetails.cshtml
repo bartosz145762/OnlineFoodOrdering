@@ -1,0 +1,41 @@
+﻿@model OnlineMealOrdering.Models.DeliveryDetails
+
+<h2>Dane do dostawy</h2>
+
+<form asp-action="DeliveryDetails" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label asp-for="FullName" class="control-label"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address" class="control-label"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="City" class="control-label"></label>
+        <input asp-for="City" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PostalCode" class="control-label"></label>
+        <input asp-for="PostalCode" class="form-control" />
+        <span asp-validation-for="PostalCode" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PhoneNumber" class="control-label"></label>
+        <input asp-for="PhoneNumber" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Złóż zamówienie</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

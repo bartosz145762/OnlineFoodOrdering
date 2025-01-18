@@ -1,0 +1,30 @@
+﻿@model List<OnlineMealOrdering.Models.CartItem>
+
+<h2>Finalizacja zamówienia</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Cena jednostkowa</th>
+            <th>Ilość</th>
+            <th>Razem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@(item.Price.ToString("C"))</td>
+                <td>@item.Quantity</td>
+                <td>@((item.Price * item.Quantity).ToString("C"))</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Suma: @Model.Sum(item => item.Price * item.Quantity).ToString("C")</h3>
+
+
+<a asp-action="DeliveryDetails" asp-controller="Cart" class="btn btn-success">Złóż zamówienie</a>

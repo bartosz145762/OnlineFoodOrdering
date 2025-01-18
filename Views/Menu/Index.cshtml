@@ -1,0 +1,43 @@
+﻿@model IEnumerable<OnlineMealOrdering.Models.MenuItem>
+
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<h2>Menu</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Opis</th>
+            <th>Cena</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <form method="post" asp-action="AddToCart" asp-controller="Menu">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-primary">Dodaj do koszyka</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <p class="text-muted">
+                            <a href="/Identity/Account/Login">Zaloguj się</a>, aby dodać do koszyka
+                        </p>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

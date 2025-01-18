@@ -1,0 +1,35 @@
+﻿@model IEnumerable<OnlineMealOrdering.Models.CartItem>
+
+<h2>Koszyk</h2>
+
+@if (!Model.Any())
+{
+    <p>Twój koszyk jest pusty.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Cena</th>
+                <th>Ilość</th>
+                <th>Suma</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@(item.Price.ToString("C"))</td>
+                    <td>@item.Quantity</td>
+                    <td>@((item.Price * item.Quantity).ToString("C"))</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p><strong>Łączna kwota: @Model.Sum(i => i.Price * i.Quantity).ToString("C")</strong></p>
+    <a asp-action="Checkout" asp-controller="Cart" class="btn btn-primary">Przejdź do finalizacji</a>
+}
